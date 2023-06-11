@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: Olha Dziuhal
+      changes:
+        - createTable:
+            tableName: orders_dishes
+            columns:
+              - column:
+                  name: order_id
+                  type: INT
+                  remarks: Order ID (Foreign key to orders table)
+              - column:
+                  name: dish_id
+                  type: INT
+                  remarks: Dish ID (Foreign key to dishes table)
+              - column:
+                  name: quantity
+                  type: INT
+                  constraints:
+                    nullable: false
+                  remarks: Quantity of the dish in the order
+            remarks: Join table for the order to dishes relationship
+        - addForeignKeyConstraint:
+            baseTableName: orders_dishes
+            baseColumnNames: order_id
+            referencedTableName: orders
+            referencedColumnNames: order_id
+            constraintName: order_id_fkey
+        - addForeignKeyConstraint:
+            baseTableName: orders_dishes
+            baseColumnNames: dish_id
+            referencedTableName: dishes
+            referencedColumnNames: dish_id
+            constraintName: dish_id_fkey

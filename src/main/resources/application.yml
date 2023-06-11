@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: restaurant
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/restaurant
+    username: root
+    password: justSOW18!!!
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      dialect: org.hibernate.dialect.MySQLDialect
+
+#  liquibase:
+#    change-log: classpath:/db/changelog-master.yml
+
+restaurant:
+  tracing:
+    sql:
+      enabled: true
+
+keycloak:
+  realm: online-shop-realm
+  resource: shop-client
+  auth-server-url: http://localhost:8180/
+  bearer-only: true
+  principal-attribute: preferred_username
+
+server:
+  port: 8081

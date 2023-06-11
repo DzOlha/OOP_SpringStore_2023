@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: Olha Dziuhal
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: order_id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+              - column:
+                  name: user_id
+                  type: INT
+                  constraints:
+                    nullable: false
+            remarks: Contains all users' orders
+        - addForeignKeyConstraint:
+            baseTableName: orders
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: user_id
+            constraintName: FK_ORDERS_USERS
